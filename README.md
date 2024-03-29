@@ -22,33 +22,13 @@ pnpm install
 pnpm dev
 ```
 
-### Compile and Minify for Production
+### 效果
 
-```sh
-pnpm build
-```
+#### 多轨迹,不同车辆轨迹颜色不一样
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+![211](https://github.com/mrcluo/vue3-openlayer/assets/40492120/b9b8a371-69a0-4a4e-9a2e-03a33147f87e)
 
-```sh
-pnpm test:unit
-```
+#### 小车移动,轨迹留痕,暂停,重置,展示当前时刻的小车数据
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+![212](https://github.com/mrcluo/vue3-openlayer/assets/40492120/59204f8c-58af-46b0-b177-74c122389446)
 
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-pnpm build
-
-# Runs the end-to-end tests
-pnpm test:e2e
-# Runs the tests only on Chromium
-pnpm test:e2e --project=chromium
-# Runs the tests of a specific file
-pnpm test:e2e tests/example.spec.ts
-# Runs the tests in debug mode
-pnpm test:e2e --debug
-```
