@@ -78,23 +78,25 @@
         </div>
       </div>
     </div>
-    <div id="viewer" class="w-full h-full" v></div>
+    <div ref="mapRef" class="w-full h-full" ></div>
   </div>
 </template>
 
 <script name="baseMap" setup>
-  import ColourfulMapLayer from "~/src/components/RaLayers/layers/ColourfulMapLayer.js";
-  import LayerManager from "~/src/components/RaLayers/core/LayerManager.js";
-  import DrawTracks from "~/src/components/RaLayers/core/DrawTracks.js";
-  import MapBuilder from "~/src/components/RaLayers/core/MapBuilder.js";
-  import { getTrajectoryStream } from "@/api/trajectory/trajectory.js";
+  import TileLayer from "ol/layer/Tile";
+  import OSM from "ol/source/OSM";
+  import View from "ol/View";
+  import { transform } from "ol/proj";
+  import Map from "ol/Map";
+  import {ref, onBeforeUnmount, onMounted} from "vue"
+  import DrawTracks from "@/core/DrawTracks.js";
+  // import { getTrajectoryStream } from "@/api/trajectory/trajectory.js";
   import startIcon from "@/assets/images/start.png";
   import pauseIcon from "@/assets/images/pause.png";
   import resetIcon from "@/assets/images/reset.png";
-  import useAccidentStore from "@/store/modules/accident";
 
-  const accidentStore = useAccidentStore();
   const map = ref();
+  const mapRef = ref()
   const streamsData = ref([]);
   const chooseTracks = ref([]);
   const tabTracks = ref([]);
@@ -103,14 +105,24 @@
   const trackDetails = ref([]);
 
   let _trackDetails = {};
-  let _layerManager = null;
   let _drawTracks = null;
   const initMap = () => {
     // 初始化地图对象
-    map.value = MapBuilder.defaultBuild("viewer");
-    // 图层管理对象
-    _layerManager = new LayerManager(map.value);
-    _layerManager.addLayer("ColourfulMapLayer", new ColourfulMapLayer());
+    map.value = new Map({
+      // 设置地图图层
+      layers: [
+        // 创建一个使用Open Street Map地图源的瓦片图层
+        new TileLayer({ source: new OSM() }),
+      ],
+      // 设置显示地图的视图
+      view: new View({
+        // 地图中心点
+        center: transform([104, 30], "EPSG:4326", "EPSG:3857"),
+        zoom: 10, // 层级显示为10
+      }),
+      // ref="mapRef"作为地图的容器
+      target: mapRef.value,
+    });
 
     _drawTracks = new DrawTracks(map.value, animating, trackDetails);
   };
@@ -150,8 +162,8 @@
   });
   onMounted(async () => {
     initMap();
-    if (!accidentStore.sgId) return;
-    let { data = [] } = await getTrajectoryStream({ sgid: accidentStore.sgId });
+    let data = []
+    // let { data = [] } = await getTrajectoryStream({ sgid: accidentStore.sgId });
     let colors = [
       [220, 30, 60, 0.9],
       [255, 165, 0, 0.9],
