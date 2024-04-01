@@ -24,11 +24,13 @@ npm run dev
 
 #### 多轨迹,不同车辆轨迹颜色不一样
 
-![211](https://github.com/mrcluo/vue3-openlayer/assets/40492120/b9b8a371-69a0-4a4e-9a2e-03a33147f87e)
+![111](https://github.com/mrcluo/vue3-openlayer/assets/40492120/3a1dc700-1056-4d3d-9161-9b2d83922f6f)
+
 
 #### 小车移动,轨迹留痕,暂停,重置,展示当前时刻的小车数据
 
-![212](https://github.com/mrcluo/vue3-openlayer/assets/40492120/59204f8c-58af-46b0-b177-74c122389446)
+![222](https://github.com/mrcluo/vue3-openlayer/assets/40492120/c51a2fcb-6746-4983-a32c-5cbd89ff60bf)
+
 
 ### 使用说明
 
@@ -38,7 +40,7 @@ npm run dev
 
 那么这里你需要用`transform`把后端给你的坐标转换成投影坐标系
 
-@/core/DrawTracks.js
+**@/core/DrawTracks.js**
 
 ```js
 singleTrack(trackLineCoordinate, currentTrackColor) {
@@ -55,7 +57,7 @@ singleTrack(trackLineCoordinate, currentTrackColor) {
 
 更改位置：
 
-@src/views/openLayer.vue
+**@src/views/openLayer.vue**
 
 ```js
   const initMap = () => {
@@ -70,3 +72,7 @@ singleTrack(trackLineCoordinate, currentTrackColor) {
     });
   };
 ```
+**OSM瓦片形式的地图UI**
+
+![1122](https://github.com/mrcluo/vue3-openlayer/assets/40492120/99ed29cd-29b9-408d-9d78-f8e904e9dce5)
+
