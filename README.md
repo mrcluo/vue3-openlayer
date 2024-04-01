@@ -1,25 +1,21 @@
-# vue-openlayer
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## 项目开始
 
 ```sh
 pnpm install
 ```
 
+或者
+
+```sh
+npm install
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
-pnpm dev
+npm run dev
 ```
 
 ### 效果展示
@@ -34,3 +30,43 @@ pnpm dev
 
 ![212](https://github.com/mrcluo/vue3-openlayer/assets/40492120/59204f8c-58af-46b0-b177-74c122389446)
 
+### 使用说明
+
+#### 坐标转换问题
+
+注意这里的坐标，根据你用的是默认的OSM瓦片层`new TileLayer({ source: new OSM() })`
+
+那么这里你需要用`transform`把后端给你的坐标转换成投影坐标系
+
+@/core/DrawTracks.js
+
+```js
+singleTrack(trackLineCoordinate, currentTrackColor) {
+    let coordinates = trackLineCoordinate.map(item => {
+      let { longitude, latitude } = item
+      return transform([longitude, latitude], "EPSG:4326", "EPSG:3857")
+      // return [longitude, latitude]
+    })
+```
+
+#### 瓦片地图
+
+因为隐私问题，demo中的瓦片地址改成了自带的`OSM`，地图展示的UI和上方面的demo有出入。开发者请使用改成你们内部的瓦片源地址
+
+更改位置：
+
+@src/views/openLayer.vue
+
+```js
+  const initMap = () => {
+    // 初始化地图对象
+    map.value = new Map({
+      // 设置地图图层
+      layers: [
+        // 创建一个使用Open Street Map地图源的瓦片图层
+        new TileLayer({ source: '此处写你们自己的瓦片引入方式和地址' }),
+      ],
+      // ...
+    });
+  };
+```

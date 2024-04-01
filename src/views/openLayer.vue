@@ -60,25 +60,9 @@
           <span class="">维度</span>
           <span class="">{{ item?.latitude || "0" }}</span>
         </div>
-        <div class="des flex flex-justify-between">
-          <span class="">高程</span>
-          <span class="">{{ item?.elevation || "0" }}</span>
-        </div>
-        <div class="des flex flex-justify-between">
-          <span class="">俯仰角</span>
-          <span class="">{{ item?.pitch || "0" }}</span>
-        </div>
-        <div class="des flex flex-justify-between">
-          <span class="">偏航角</span>
-          <span class="">{{ item?.yaw || "0" }}</span>
-        </div>
-        <div class="des flex flex-justify-between">
-          <span class="">滚转角</span>
-          <span class="">{{ item?.roll || "0" }}</span>
-        </div>
       </div>
     </div>
-    <div ref="mapRef" class="w-full h-full" ></div>
+    <div ref="mapRef" class="w-full h-full"></div>
   </div>
 </template>
 
@@ -88,15 +72,16 @@
   import View from "ol/View";
   import { transform } from "ol/proj";
   import Map from "ol/Map";
-  import {ref, onBeforeUnmount, onMounted} from "vue"
+  import { ref, onBeforeUnmount, onMounted } from "vue";
   import DrawTracks from "@/core/DrawTracks.js";
   // import { getTrajectoryStream } from "@/api/trajectory/trajectory.js";
   import startIcon from "@/assets/images/start.png";
   import pauseIcon from "@/assets/images/pause.png";
   import resetIcon from "@/assets/images/reset.png";
+  import { streamData } from "@/core/data";
 
   const map = ref();
-  const mapRef = ref()
+  const mapRef = ref();
   const streamsData = ref([]);
   const chooseTracks = ref([]);
   const tabTracks = ref([]);
@@ -117,7 +102,7 @@
       // 设置显示地图的视图
       view: new View({
         // 地图中心点
-        center: transform([104, 30], "EPSG:4326", "EPSG:3857"),
+        center: transform([121.480248, 31.036276], "EPSG:4326", "EPSG:3857"),
         zoom: 10, // 层级显示为10
       }),
       // ref="mapRef"作为地图的容器
@@ -162,7 +147,7 @@
   });
   onMounted(async () => {
     initMap();
-    let data = []
+    let data = streamData;
     // let { data = [] } = await getTrajectoryStream({ sgid: accidentStore.sgId });
     let colors = [
       [220, 30, 60, 0.9],

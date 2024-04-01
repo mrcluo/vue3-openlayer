@@ -5,7 +5,7 @@ import VectorLayer from "ol/layer/Vector";
 import { Vector } from "ol/source";
 import { Circle, Fill, Icon, Stroke, Style } from "ol/style";
 import { getVectorContext } from "ol/render";
-// import { transform } from "ol/proj";
+import { transform } from "ol/proj";
 import markIcon from "@/assets/images/car-track.png";
 
 export default class DrawTracks {
@@ -24,8 +24,8 @@ export default class DrawTracks {
   singleTrack(trackLineCoordinate, currentTrackColor) {
     let coordinates = trackLineCoordinate.map(item => {
       let { longitude, latitude } = item
-      // transform([longitude, latitude], "EPSG:4326", "EPSG:3857")
-      return [longitude, latitude]
+      return transform([longitude, latitude], "EPSG:4326", "EPSG:3857")
+      // return [longitude, latitude]
     })
     let trackLine = new LineString(coordinates)
     const trackFeature = new Feature({
@@ -82,7 +82,7 @@ export default class DrawTracks {
 
   initMultiplyTrack(tracks, chooseTracks) {
     return tracks.map((item) => {
-      let currentTrackColor = chooseTracks.filter(val => val.rybh === item[0]?.rybh)[0]?.color
+      let currentTrackColor = chooseTracks.filter(val => +val.rybh === +item[0]?.rybh)[0]?.color
       console.log("🚀 ~ returntracks.map ~ currentTrackColor:", currentTrackColor)
       return this.singleTrack(item, currentTrackColor)
     });
