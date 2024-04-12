@@ -139,9 +139,9 @@ export default class DrawTracks {
     const elapsedTime = time - this.lastTime;
     this.distance = (this.distance + (this.speed * elapsedTime) / 1e6) % 2;
     // 得到当前时刻的坐标数据
-    let _index = Math.ceil(this.distance * item.trackLineCoordinate.length)
-    let _item = item.trackLineCoordinate[_index - 1]
-    if (_item) this.trackDetails.value[_item.rybh] = item.trackLineCoordinate[_index]
+    let _index = Math.floor(this.distance * item.trackLineCoordinate.length)
+    let _item = item.trackLineCoordinate[_index]
+    if (_item) this.trackDetails.value[_item.rybh] = _item
 
     this.lastTime = time;
 

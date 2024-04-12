@@ -42,7 +42,8 @@ const streamData = [
       {
         "hphm": "沪***1",
         "latitude": 30.902799,
-        "longitude": 121.955194
+        "longitude": 121.955194,
+        "rybh": 1,
       },
       {
         "hphm": "沪***1",
@@ -107,7 +108,8 @@ const streamData = [
       {
         "hphm": "沪***2",
         "latitude": 30.902799,
-        "longitude": 121.955194
+        "longitude": 121.955194,
+        "rybh": 2,
       },
       {
         "hphm": "沪***2",
