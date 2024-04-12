@@ -1,6 +1,6 @@
 
 
-## 项目开始
+### 项目开始
 
 ```sh
 pnpm install
@@ -12,7 +12,7 @@ pnpm install
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 运行
 
 ```sh
 npm run dev
@@ -57,7 +57,7 @@ singleTrack(trackLineCoordinate, currentTrackColor) {
 
 更改位置：
 
-**@src/views/openLayer.vue**
+**@src/views/components/openLayer.vue**
 
 ```js
   const initMap = () => {
