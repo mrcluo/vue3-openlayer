@@ -17,7 +17,7 @@
 
 <script name="baseMap" setup>
   import { ref, onMounted } from "vue";
-  import vOpenlayer from "@/components/openLayer.vue";
+  import vOpenlayer from "/packages/index.vue";
   import { streamData } from "@/core/data";
   const data = ref([]);
   data.value = streamData;

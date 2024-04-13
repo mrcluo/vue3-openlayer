@@ -10,6 +10,15 @@
     "test:unit": "vitest",
     "test:e2e": "playwright test"
   },
+  "files": ["lib"],
+  "main": "lib/vue3-openlayer-track.umd.cjs",
+  "module": "lib/vue3-openlayer-track.umd.cjs",
+  "exports": {
+      ".":{
+          "import" : "./lib/vue3-openlayer-track.umd.cjs",
+          "require": "./lib/vue3-openlayer-track.umd.cjs"
+      }
+   },
   "dependencies": {
     "element-plus": "^2.6.3",
     "ol": "^9.0.0",

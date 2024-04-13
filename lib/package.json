@@ -1,0 +1,12 @@
+{
+  "name": "vue3-openlayer-track",
+  "version": "1.0.0",
+  "description": "vue3 + openLayer地图,功能包含轨迹绘制,多条轨迹,小车移动,小车暂停,轨迹留痕",
+  "main": "vue3-openlayer-track.umd.cjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
