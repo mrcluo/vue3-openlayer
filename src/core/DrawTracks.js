@@ -83,7 +83,7 @@ export default class DrawTracks {
   initMultiplyTrack(tracks, chooseTracks) {
     return tracks.map((item) => {
       let currentTrackColor = chooseTracks.filter(val => +val.rybh === +item[0]?.rybh)[0]?.color
-      console.log("🚀 ~ returntracks.map ~ currentTrackColor:", currentTrackColor)
+      // console.log("🚀 ~ returntracks.map ~ currentTrackColor:", currentTrackColor)
       return this.singleTrack(item, currentTrackColor)
     });
   };
@@ -166,7 +166,7 @@ export default class DrawTracks {
   };
 
   resetMove(data, chooseTracks) {
-    console.log("🚀 ~ DrawTracks ~ resetMove ~ chooseTracks:", chooseTracks)
+    // console.log("🚀 ~ DrawTracks ~ resetMove ~ chooseTracks:", chooseTracks)
     // 重新开始
     this.stopMove()
     this.distance = 0;
@@ -200,7 +200,7 @@ export default class DrawTracks {
 
   stopMove(type, item) {
     if (!this.animating.value) return
-    console.log('🚀 ~ stopMove ~ item:', item);
+    // console.log('🚀 ~ stopMove ~ item:', item);
     if (type === 'single') {
       item.geoMarker.setGeometry(item.position);
       item.carTrackFeature.setGeometry(item.carPosition);
@@ -219,7 +219,7 @@ export default class DrawTracks {
   };
 
   addTrack(data, chooseTracks) {
-    console.log("🚀 ~ addTrack ~ data:", data)
+    // console.log("🚀 ~ addTrack ~ data:", data)
     this.addLayer(data, chooseTracks);
   };
 

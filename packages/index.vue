@@ -70,7 +70,14 @@
   </div>
 </template>
 
-<script name="OL" setup>
+<script name="vue3OpenlayerTrack" setup>
+  // npm包所需: 按需引入element组件
+  import 'element-plus/dist/index.css'
+  import {
+    ElCheckbox, ElCheckboxGroup, ElImage
+  } from 'element-plus'
+  // npm包所需: no.css
+  import 'virtual:uno.css'
   import TileLayer from "ol/layer/Tile";
   import OSM from "ol/source/OSM";
   import View from "ol/View";
@@ -184,9 +191,9 @@
   });
   onMounted(async () => {
     const { streams, colors } = props;
-    console.log("🚀 ~ onMounted ~ props:", props);
     initMap();
-    let data = streams;
+    if(!streams && !Array.isArray(streams)) return
+    let data = streams || []
     // let { data = [] } = await getTrajectoryStream({ sgid: accidentStore.sgId });
     let _colors = colors || [
       [220, 30, 60, 0.9],
@@ -215,6 +222,8 @@
 </script>
 <style scoped lang="scss">
   .track-area {
+    width:100%;
+    height: 100vh;
     .details {
       position: fixed;
       right: 26px;
