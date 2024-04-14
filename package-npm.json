@@ -1,12 +1,18 @@
 {
   "name": "vue3-openlayer-track",
-  "version": "xxx",
+  "version": "1.0.9",
   "description": "vue3 + openLayer地图,功能包含轨迹绘制,多条轨迹,小车移动,小车暂停,轨迹留痕",
   "main": "vue3-openlayer-track.umd.cjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["vue3", "openlayer"],
+  "keywords": ["vue3", "web", "vue", "vuejs","vuelayers", "map", "openlayer"],
   "author": "",
-  "license": "ISC"
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://github.com/mrcluo/vue3-openlayer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrcluo/vue3-openlayer"
+  }
 }
